@@ -19,9 +19,12 @@ mac:
   icon: assets/icon.icns
   target:
     - target: dmg
+      arch: [universal]
     - target: zip
+      arch: [universal]
   hardenedRuntime: true
   entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
 linux:
   icon: assets/linux/icons
   target:

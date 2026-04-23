@@ -34,7 +34,7 @@
 - 📊 **Analytics** — daily/weekly charts, streak calendar, focus score
 - ✅ **Task panel** — link tasks to sessions, track estimated vs actual pomodoros
 - 🎨 **Themes** — System / Dark / Light / AMOLED + 6 accent colours
-- 🔄 **Auto-update** — silent background updates via GitHub Releases
+- 🔄 **Auto-update ready** — available when signed/notarized installer distribution is configured
 - 💥 **Crash reporting** — local log files, crash dump detection on relaunch
 - 🖱️ **System tray** — live countdown in tooltip, start/pause without opening window
 - 🪄 **Mini timer window** — floating always-on-top compact view
@@ -52,13 +52,11 @@ If you want the classic Pomodoro rhythm, use:
 
 ## 📥 Download
 
-| Platform | Installer |
-|----------|-----------|
-| macOS (Apple Silicon + Intel) | [Download .dmg](https://github.com/ntsagar9/time-promodo/releases/latest) |
-| Windows (x64) | [Download .exe](https://github.com/ntsagar9/time-promodo/releases/latest) |
-| Linux | [Download .AppImage](https://github.com/ntsagar9/time-promodo/releases/latest) |
-
-> Auto-updates are built in — you only need to download once.
+| Platform | Availability |
+|----------|--------------|
+| Windows (x64) | Prebuilt `.exe` on [latest release](https://github.com/ntsagar9/time-promodo/releases/latest) |
+| Linux | Prebuilt `.AppImage` on [latest release](https://github.com/ntsagar9/time-promodo/releases/latest) |
+| macOS | Local/manual build only (not attached to tag releases) |
 
 ## 🚀 Development Setup
 
@@ -90,7 +88,7 @@ pnpm dev
 | `pnpm typecheck` | Run TypeScript strict check |
 | `pnpm lint` | Run ESLint |
 | `pnpm build:app` | Build production app (`out/`) |
-| `pnpm dist` | Build + package installers for the current platform |
+| `pnpm dist` | Build + package local installers for the current platform |
 
 ### App Icons (All Platforms)
 
@@ -169,11 +167,12 @@ Releases are published via GitHub Actions on tag push:
    git tag v1.0.0
    git push origin v1.0.0
    ```
-2. The **Release** workflow runs automatically for `v*` tags and uploads cross-platform artifacts (macOS `.dmg`, Windows `.exe`, Linux `.AppImage`) to that GitHub Release.
+2. The **Release** workflow runs automatically for `v*` tags and uploads **Windows** (`.exe`) and **Linux** (`.AppImage`) artifacts to that release.
+3. **macOS** builds are intentionally excluded from tag releases and should be produced manually when needed.
 
 You can also run **Actions → Release → Run workflow** manually, but select a `v*` tag ref (not a branch) so publish targets the release tag.
-Before tagging, ensure PR checks pass (`pnpm lint`, `pnpm typecheck`, `pnpm build:app`) on the GitHub Actions matrix.
+Before tagging, ensure checks pass (`pnpm lint`, `pnpm typecheck`, `pnpm build:app`).
 
 ## Building for distribution (macOS)
 
-For public releases outside the App Store you need an **Apple Developer** identity, **code signing**, and **notarization**. Local ad-hoc testing may require `xattr -cr /Applications/TimerPromodo.app` after copy. See `docs/INSTALL.md` for end-user install steps.
+macOS packaging is manual/local only in this repository. For public prebuilt macOS releases outside the App Store you need an **Apple Developer** identity, **code signing**, and **notarization**. Without that, expect manual Gatekeeper bypass on unsigned binaries.

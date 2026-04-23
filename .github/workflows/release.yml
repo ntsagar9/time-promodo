@@ -16,15 +16,17 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-latest
-            package_args: --mac dmg zip
-            upload_glob: dist/*.dmg
           - os: windows-latest
             package_args: --win nsis portable
-            upload_glob: dist/*.exe
+            upload_glob: |
+              dist/*.exe
+              dist/latest.yml
+              dist/*.blockmap
           - os: ubuntu-latest
             package_args: --linux AppImage
-            upload_glob: dist/*.AppImage
+            upload_glob: |
+              dist/*.AppImage
+              dist/latest-linux.yml
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -73,9 +75,3 @@ jobs:
           append_body: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Show dist files (debug)
-        if: always()
-        shell: bash
-        run: |
-          ls -la dist || true
-          echo "Expected upload glob: ${{ matrix.upload_glob }}"
