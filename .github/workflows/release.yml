@@ -37,7 +37,8 @@ jobs:
         shell: bash
         run: |
           TAG="${GITHUB_REF_NAME}"
-          if [[ ! "$TAG" =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+.*$ ]]; then
+          echo "Release tag: $TAG"
+          if ! echo "$TAG" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+([.-].*)?$'; then
             echo "Tag must look like v1.2.3 (or include suffixes like -beta.1). Current ref: $TAG"
             exit 1
           fi
