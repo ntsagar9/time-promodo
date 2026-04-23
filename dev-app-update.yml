@@ -1,0 +1,4 @@
+provider: github
+owner: ntsagar9
+repo: time-promodo
+updaterCacheDirName: timerpromodo-updater
