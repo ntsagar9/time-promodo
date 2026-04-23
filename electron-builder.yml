@@ -1,0 +1,38 @@
+appId: com.timerpromodo.app
+productName: TimerPromodo
+directories:
+  output: dist
+files:
+  - 'out/**'
+  - 'package.json'
+  - 'assets/**'
+extraResources:
+  - from: assets
+    to: assets
+win:
+  icon: assets/icon.ico
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+mac:
+  icon: assets/icon.icns
+  target:
+    - target: dmg
+    - target: zip
+  hardenedRuntime: true
+  entitlements: build/entitlements.mac.plist
+linux:
+  icon: assets/linux/icons
+  target:
+    - target: AppImage
+    - target: deb
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+publish:
+  provider: github
+  owner: ntsagar9
+  repo: time-promodo

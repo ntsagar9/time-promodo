@@ -1,0 +1,44 @@
+:root {
+  --background: 222 47% 6%;
+  --foreground: 210 40% 98%;
+  --surface: 222 40% 12%;
+  --muted: 215 20% 70%;
+  --accent: 9 90% 58%;
+}
+
+.theme-light {
+  color-scheme: light;
+  --background: 0 0% 100%;
+  --foreground: 222 47% 8%;
+  --surface: 210 20% 98%;
+  --muted: 215 16% 40%;
+  --accent: 9 90% 52%;
+}
+
+.theme-amoled {
+  color-scheme: dark;
+  --background: 0 0% 0%;
+  --foreground: 210 40% 98%;
+  --surface: 0 0% 6%;
+  --muted: 215 20% 70%;
+  --accent: 9 90% 58%;
+}
+
+.accent-tomato {
+  --accent: 9 90% 58%;
+}
+.accent-ocean {
+  --accent: 204 94% 55%;
+}
+.accent-forest {
+  --accent: 152 60% 42%;
+}
+.accent-sunset {
+  --accent: 28 95% 55%;
+}
+.accent-purple {
+  --accent: 270 80% 65%;
+}
+.accent-pink {
+  --accent: 330 85% 62%;
+}
