@@ -17,11 +17,11 @@ jobs:
       matrix:
         include:
           - os: macos-latest
-            artifact: '*.dmg'
+            upload_glob: dist/*.dmg
           - os: windows-latest
-            artifact: '*.exe'
+            upload_glob: dist/*.exe
           - os: ubuntu-latest
-            artifact: '*.AppImage'
+            upload_glob: dist/*.AppImage
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -47,7 +47,21 @@ jobs:
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm build:app
-      - name: Package and publish
-        run: pnpm exec electron-builder --publish always
+      - name: Package app
+        run: pnpm exec electron-builder --publish never
+      - name: Upload platform assets to release tag
+        uses: softprops/action-gh-release@v2
+        if: success()
+        with:
+          tag_name: ${{ github.ref_name }}
+          files: ${{ matrix.upload_glob }}
+          fail_on_unmatched_files: true
+          append_body: true
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Show dist files (debug)
+        if: always()
+        shell: bash
+        run: |
+          ls -la dist || true
+          echo "Expected upload glob: ${{ matrix.upload_glob }}"
