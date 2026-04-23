@@ -5,9 +5,12 @@
 > If you find it useful — [⭐ star the repo](https://github.com/ntsagar9/time-promodo) or [☕ buy me a coffee](https://buymeacoffee.com/ntsagar)!
 
 <p align="center">
-  <!-- Replace with real screenshots after UI polish -->
-  <img src="docs/screenshots/dark-timer.png" width="380" alt="TimerPromodo dark theme" />
-  <img src="docs/screenshots/light-analytics.png" width="380" alt="Analytics panel" />
+  <img src="docs/screenshots/main-light.png" width="380" alt="TimerPromodo main screen (light)" />
+  <img src="docs/screenshots/main-dark.png" width="380" alt="TimerPromodo main screen (dark)" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/settings-presets.png" width="380" alt="Preset management in settings" />
+  <img src="docs/screenshots/settings-appearance.png" width="380" alt="Theme and appearance settings" />
 </p>
 
 <p align="center">
