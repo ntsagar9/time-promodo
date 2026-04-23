@@ -162,17 +162,16 @@ Built with ❤️ as a portfolio project. If you find it useful, leave a ⭐!
 
 ## 🚢 Release & Deployment
 
-Releases are published via the **Release** GitHub Actions workflow (manual trigger):
+Releases are published via GitHub Actions on tag push:
 
 1. Create and push a tag (example `v1.0.0`):
    ```bash
    git tag v1.0.0
    git push origin v1.0.0
    ```
-2. Open **Actions → Release → Run workflow**
-3. Enter the same tag in the `tag` input (example: `v1.0.0`)
+2. The **Release** workflow runs automatically for `v*` tags and uploads cross-platform artifacts (macOS `.dmg`, Windows `.exe`, Linux `.AppImage`) to that GitHub Release.
 
-The workflow builds cross-platform artifacts (macOS `.dmg`, Windows `.exe`, Linux `.AppImage`) and uploads them to that GitHub Release.
+You can also run **Actions → Release → Run workflow** manually, but select a `v*` tag ref (not a branch) so publish targets the release tag.
 Before tagging, ensure PR checks pass (`pnpm lint`, `pnpm typecheck`, `pnpm build:app`) on the GitHub Actions matrix.
 
 ## Building for distribution (macOS)
